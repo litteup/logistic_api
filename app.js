@@ -22,13 +22,15 @@ const io = new Server(httpServer, {
 
 io.use((socket, next) => {
 
-  console.log(socket.request)
+  /* console.log(socket.request.headers) */
 
   const token = socket.request.headers.auth;
 
   const { error, user } = ioAuthMiddleware(token);
 
   if (error) return socket.emit('error', "Authentication error");
+
+  if(user) socket.emit('connectedSuccessfully','connectedSuccessfully');
 
   socket.request.user = user;
   next();

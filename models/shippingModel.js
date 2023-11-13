@@ -37,8 +37,8 @@ const orderSchema = new mongoose.Schema({
     }
 }, { timestamps: true });
 
-const userModel = mongoose.model('orders', orderSchema);
+const shippingModel = mongoose.model('orders', orderSchema);
 
 module.exports = {
-    userModel
+    shippingModel
 };
