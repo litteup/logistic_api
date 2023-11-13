@@ -18,7 +18,6 @@ const customerSchema = new mongoose.Schema({
     role:{
         type: String,
         enum:["customer","rider"],
-        default: "user",
         required: true
     }
 

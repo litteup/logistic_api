@@ -10,14 +10,14 @@ require('dotenv').config();
 // Express Routes
 router.post('/register', async (req, res) => {
     try {
-        const { fullName, email, password } = req.body;
+        const { fullName, email, password,role } = req.body;
         const hashedPassword = await bcrypt.hash(password, 10);
 
         const customer = await userCollection.create({
             fullName,
             email,
             password: hashedPassword,
-            role: 'customer',
+            role
         });
 
         res.status(201).json(customer);
@@ -46,7 +46,7 @@ router.post('/login', async (req, res) => {
             isUserLoggedInSuccessful: true,
             token
          });
-         
+
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Internal Server Error' });

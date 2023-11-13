@@ -10,7 +10,7 @@ const {isUserLoggedIn, createOrders} = require('../routes/middleware')
 
 router.use(isUserLoggedIn);
 
-router.post('/order', async (req, res) => {
+router.post('/order', createOrders, async (req, res) => {
     const {customerId} = req.decoded;
     console.log(req.decoded)
     try {
@@ -22,7 +22,7 @@ router.post('/order', async (req, res) => {
             itemWeight,
         });
 
-        io.emit('orderStatusChange', { orderId: order._id, status: order.status });
+        // io.emit('orderStatusChange', { orderId: order._id, status: order.status });
         res.status(201).json(order);
     } catch (error) {
         console.error(error);
@@ -31,6 +31,8 @@ router.post('/order', async (req, res) => {
 });
 
 // List of a customer's shipping request
+
+
 
 router.get("/", async(req,res)=>{
 

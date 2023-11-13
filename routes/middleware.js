@@ -55,7 +55,7 @@ function isUserLoggedIn(req,res,next){
 //function for who can create task - users less riders
 
 function createOrders(req,res, next){
-    if(req.decoded.role == 'user' ){
+    if(req.decoded.role == 'customer' ){
         next();
     }else{
         res.status(401).send("You are not authorized to place orders.");
