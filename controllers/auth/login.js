@@ -1,6 +1,6 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const userModel = require('../../models/userModel');
+const {userModel} = require('../../models/userModel');
 const secret = process.env.secret;
 const joi = require('joi');
 
@@ -31,7 +31,11 @@ async function loginController (req, res) {
     }, secret);
 
     res.status(200).json({ 
-        message: "Sign in successfully", 
+        message: "Sign in successfully",
+        data:{
+            userId,
+            role
+        },
         token
      });
 }

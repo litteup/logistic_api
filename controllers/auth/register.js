@@ -1,5 +1,5 @@
 const bcrypt = require('bcrypt');
-const userModel = require('../../models/userModel');
+const {userModel} = require('../../models/userModel');
 const joi = require('joi');
 
 async function registerController (req, res) {

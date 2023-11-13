@@ -1,7 +1,7 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const shippingModel = require('../../models/shippingModel');
-// const secret = process.env.secret;
+const {shippingModel} = require('../../models/shippingModel');
+
 
 async function createNewRequest (req, res) {
     const { itemName, address, destinationAddress, itemWeight, cost } = req.body;

@@ -1,4 +1,4 @@
-const shippingModel = require('../../models/shippingModel');
+const {shippingModel} = require('../../models/shippingModel');
 
 async function fetchAllOrders (req, res) {
     const user = req.userDetails;

@@ -12,12 +12,18 @@ const ioAuthMiddleware = require('./utils/ioAuthMiddleware');
 const shippingModel = require('./models/shippingModel');
 const { notificationModel } = require('./models/notifications');
 const { connectedUsersModel } = require('./models/connectedUser');
+const cors = require('cors');
 
 const app = express();
 const httpServer = createServer(app);
-const io = new Server(httpServer);
+const io = new Server(httpServer, {
+  cors: {origin:"*" }
+});
 
 io.use((socket, next) => {
+
+  console.log(socket.request)
+
   const token = socket.request.headers.auth;
 
   const { error, user } = ioAuthMiddleware(token);
@@ -106,6 +112,7 @@ connectDb.then(() =>{
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(cors({ origin: '*' }));
 
 app.use('/auth', authRouter);
 app.use('/customer/orders', customerRouter);
