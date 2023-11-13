@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken');
 const {userModel} = require('../../models/userModel');
 const secret = process.env.secret;
 const joi = require('joi');
+require('dotenv').config();
 
 async function loginController (req, res) {
     const { email, password } = req.body;
@@ -28,7 +29,7 @@ async function loginController (req, res) {
         userEmail, 
         userId, 
         role 
-    }, secret);
+    }, process.env.JWT_SECRET);
 
     res.status(200).json({ 
         message: "Sign in successfully",
